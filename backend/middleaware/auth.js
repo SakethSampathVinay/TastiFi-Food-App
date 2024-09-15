@@ -15,4 +15,4 @@ const authMiddleaware = async (request, response, next) => {
     }
 }
 
-export default authMiddleaware
+export default authMiddleaware ;
