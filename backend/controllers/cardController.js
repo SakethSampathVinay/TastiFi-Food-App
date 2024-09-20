@@ -22,20 +22,27 @@ const addToCart = async (request, response) => {
 
 // remove items from user cart
 
+// remove items from user cart
 const removeFromCart = async (request, response) => {
   try {
+    console.log("Request Received" , request.body);
     let userData = await userModel.findById(request.body.userId);
-    let cartData = await userData.cartData;
+    let cartData = userData.cartData;
     if (cartData[request.body.itemId] > 0) {
       cartData[request.body.itemId] -= 1;
+      if (cartData[request.body.itemId] === 0) {
+        delete cartData[request.body.itemId];
     }
+    console.log("Updating user Data", cartData);
     await userModel.findByIdAndUpdate(request.body.userId, { cartData });
     response.json({ success: true, message: "Removed from Cart" });
-  } catch {
-    console.log(error);
-    response.json({ success: false, message: "Error" });
   }
-};
+} catch (error) {
+  console.log(error);
+  response.json({ success: false, message: "Error" });
+}
+}
+
 
 // fetch user cart data
 

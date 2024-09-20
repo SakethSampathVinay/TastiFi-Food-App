@@ -6,7 +6,7 @@ import validator from "validator";
 // Login
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_TOKEN, { expiresIn: "1h" });
+  return jwt.sign({ id }, process.env.JWT_TOKEN, { expiresIn: "24h" });
 };
 
 const loginUser = async (request, response) => {

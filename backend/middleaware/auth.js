@@ -10,8 +10,13 @@ const authMiddleaware = async (request, response, next) => {
         request.body.userId = token_decode.id;
         next();
     } catch(error) {
-        console.log(error);
-        response.json({success: false, message: "Error"});
+        if(error instanceof jwt.TokenExpiredError) {
+            return response.status(401).send({message: "Token has expired. Please obtain a new one."})
+        }
+        else {
+            console.log(error);
+            response.json({success: false, message: "Error"});
+        }
     }
 }
 
