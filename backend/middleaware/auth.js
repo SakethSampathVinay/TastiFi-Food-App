@@ -1,9 +1,8 @@
 import jwt from "jsonwebtoken";
 
-const authMiddleaware = async (request, response, next) => {
+const authMiddleware = async (request, response, next) => {
   const authHeader = request.headers.authorization;
 
-  // Check if Authorization header is present
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return response.status(401).json({
       success: false,
@@ -11,37 +10,22 @@ const authMiddleaware = async (request, response, next) => {
     });
   }
 
-  // Extract token from "Bearer <token>"
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return response.status(401).json({
-      success: false,
-      message: "Token is missing or invalid.",
-    });
-  }
+  const token = authHeader.split(" ")[1]; // Extract token correctly
 
   try {
-    // Verify token
-    const token_decode = jwt.verify(token, process.env.JWT_SECRET); // Ensure the secret matches with the one used during token creation
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    request.body.userId = decoded.id; // Ensure your token payload includes `id`
 
-    // Attach user ID to request body
-    request.body.userId = token_decode.id;
-    next();
+    next(); // Proceed to the next middleware or route
   } catch (error) {
-    if (error instanceof jwt.TokenExpiredError) {
-      return response.status(401).json({
-        success: false,
-        message: "Token has expired. Please log in again.",
-      });
+    if (error.name === "JsonWebTokenError") {
+      console.error("Invalid or malformed JWT token");
+      return response.status(401).send({ error: "Invalid token" });
     } else {
-      console.log(error);
-      return response.status(401).json({
-        success: false,
-        message: "Invalid token.",
-      });
+      console.error(error);
+      return response.status(500).json({ error: "Internal Server Error" });
     }
   }
 };
 
-export default authMiddleaware;
+export default authMiddleware; 

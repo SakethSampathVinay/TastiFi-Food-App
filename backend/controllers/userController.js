@@ -6,7 +6,7 @@ import validator from "validator";
 // Login
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_TOKEN, { expiresIn: "24h" });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "24h" });
 };
 
 const loginUser = async (request, response) => {
@@ -23,6 +23,7 @@ const loginUser = async (request, response) => {
       return response.json({success: false, message: "Invalid Credentials"});
     }
     const token = createToken(user._id);
+    console.log("Generated Token: " , token)
     response.json({success: true, token});
 
   } catch (error) {
@@ -50,7 +51,7 @@ const registerUser = async (request, response) => {
       message: "Password must be at least 8 characters long",
     });
   }
-  if (!process.env.JWT_TOKEN) {
+  if (!process.env.JWT_SECRET) {
     return response.json({
       success: false,
       message: "JWT_TOKEN is not set in the environment",
