@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
@@ -23,8 +23,9 @@ const Cart = () => {
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <>
-                <div className="cart-items-title cart-items-item">
+              <Fragment key = {item._id}>
+                <div className="cart-items-title cart-items-item"  key={index}>
+
                   <img src={url + "/images/" + item.image} alt="item image" />
                   <p>{item.name}</p>
                   <p>₹{item.price}</p>
@@ -35,7 +36,7 @@ const Cart = () => {
                   </p>
                 </div>
                 <hr />
-              </>
+              </Fragment>
             );
           }
         })}
