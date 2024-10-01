@@ -1,9 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
-import Stripe from "stripe"
+import Stripe from "stripe";
 
+console.log(process.env.STRIPE_SECRET_KEY);
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+console.log(stripe);
 
 // placing user order for frontend
 const placeOrder = async (request, response) => {
@@ -24,7 +28,7 @@ const placeOrder = async (request, response) => {
                 product_data: {
                     name: items.name
                 },
-                unit_amount: items.price * 100 *80
+                unit_amount: items.price * 100
             },
             quantity: items.quantity
         }))
@@ -35,7 +39,7 @@ const placeOrder = async (request, response) => {
                 product_data : {
                     name: "Delivery Charges"
                 },
-                unit_amount: 2 * 100 * 80
+                unit_amount: 2 * 100
             },
             quantity: 1
         })
@@ -53,4 +57,22 @@ const placeOrder = async (request, response) => {
     }
 }
 
-export {placeOrder}
+
+const verifyOrder = async (request, response) => {
+    const {orderId, success} = request.body;
+    try {
+        if (success === "true"){
+            await orderModel.findByIdAndUpdate(orderId, {payment: true})
+            response.json({success: true, message: "Paid"})
+        }
+        else {
+            await orderModel.findByIdAndDelete(orderId);
+            response.json({success: false, message: "Not Paid"});
+        }
+    } catch (error) {
+        console.log(error)
+        response.json({success: false, message: "Error"});
+    }
+}
+
+export {placeOrder, verifyOrder}
