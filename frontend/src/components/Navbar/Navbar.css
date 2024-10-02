@@ -28,6 +28,7 @@
   z-index: 99;
   padding-left: 40px;
   padding-right: 40px;
+  /*display: none;*/
 }
 
 .navbar .logo {

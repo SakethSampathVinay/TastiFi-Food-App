@@ -4,6 +4,7 @@
     background: url("/header_img.png") no-repeat;
     background-size: contain;
     position: relative;
+    margin-top: 100px;
 }
 
 .header-contents {
@@ -46,6 +47,9 @@
 }
 
 @media (max-width: 750px) {
+    .header {
+        margin-top: 70px;
+    }
     .header-contents {
         max-width: 65%;
     }

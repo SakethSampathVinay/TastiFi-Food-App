@@ -11,7 +11,7 @@ console.log(stripe);
 
 // placing user order for frontend
 const placeOrder = async (request, response) => {
-    const frontend_url = "http://localhost:5173";
+    const frontend_url = "http://localhost:5173"; // we have to place the frontend url whatever it is 
     try {
         const newOrder = new orderModel({
             userId: request.body.userId,
@@ -75,4 +75,17 @@ const verifyOrder = async (request, response) => {
     }
 }
 
-export {placeOrder, verifyOrder}
+// User Order for frontend
+
+const userOrders = async (request, response) => {
+    try {
+        // console.log("User Id: ", request.user.id)
+        const orders = await orderModel.find({userId: request.body.userId})
+        response.json({success: true, data: orders})
+    } catch(error) {
+        console.log(error)
+        response.json({success: false, message: "Error"})
+    }
+}
+
+export {placeOrder, verifyOrder, userOrders}
