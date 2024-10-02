@@ -11,7 +11,7 @@ console.log(stripe);
 
 // placing user order for frontend
 const placeOrder = async (request, response) => {
-    const frontend_url = "http://localhost:5173"; // we have to place the frontend url whatever it is 
+    const frontend_url = "https://tasti-fi.vercel.app"; // we have to place the frontend url whatever it is 
     try {
         const newOrder = new orderModel({
             userId: request.body.userId,
