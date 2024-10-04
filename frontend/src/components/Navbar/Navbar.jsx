@@ -16,7 +16,8 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className="navbar">
       <Link to="/">
-        <img src={assets.logo} alt="logo" className="logo" />
+        
+        <img src = "https://res.cloudinary.com/dgtfgihga/image/upload/v1727961916/Screenshot_2024-10-03_185337_kfx3hh.png" className="logo" />
       </Link>
       <ul className="navbar-menu">
         <Link

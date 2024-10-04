@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="footer" id="footer">
       <div className="footer-content">
         <div className="footer-content-left">
-          <img src={assets.logo} alt="" />
+        <img src = "https://res.cloudinary.com/dgtfgihga/image/upload/v1727962392/Screenshot_2024-10-03_185337-removebg-preview_zjrhic.png" className="logo" />
           <p>
             Lorem Ipsum is simply dummy test of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -33,13 +33,13 @@ const Footer = () => {
           <h2>GET IN TOUCH</h2>
           <ul>
             <li>+1-212-456-7890</li>
-            <li>contact@tomato.com</li>
+            <li>contact@TastiFi.com</li>
           </ul>
         </div>
       </div>
       <hr />
       <p className="footer-copyright">
-        Copyright 2024 Tomato.com - All Right Reserved.
+        Copyright 2024 TastiFi.com - All Right Reserved.
       </p>
     </div>
   );

@@ -4,88 +4,85 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
-console.log(process.env.STRIPE_SECRET_KEY);
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-console.log(stripe);
 
-// placing user order for frontend
+// Placing user order for frontend
 const placeOrder = async (request, response) => {
-    const frontend_url = "https://tasti-fi.vercel.app"; // we have to place the frontend url whatever it is 
+    const frontend_url = "https://tasti-fi.vercel.app"; // your frontend URL
     try {
         const newOrder = new orderModel({
             userId: request.body.userId,
-            items : request.body.items,
-            amount : request.body.amount,
+            items: request.body.items,
+            amount: request.body.amount,
             address: request.body.address
-        })
+        });
         await newOrder.save();
-        await userModel.findByIdAndUpdate(request.body.userId, {cartData: {}});
+        await userModel.findByIdAndUpdate(request.body.userId, { cartData: {} });
 
-        const line_items = request.body.items.map((items) => ({
-            price_data : {
+        const line_items = request.body.items.map((item) => ({
+            price_data: {
                 currency: "inr",
                 product_data: {
-                    name: items.name
+                    name: item.name,
                 },
-                unit_amount: items.price * 100
+                unit_amount: item.price * 100, // convert to paise
             },
-            quantity: items.quantity
-        }))
+            quantity: item.quantity,
+        }));
 
+        // Add delivery charge as a separate item
         line_items.push({
             price_data: {
                 currency: "inr",
-                product_data : {
-                    name: "Delivery Charges"
+                product_data: {
+                    name: "Delivery Charges",
                 },
-                unit_amount: 2 * 100
+                unit_amount: 2 * 100, // Rs. 2 delivery charge
             },
-            quantity: 1
-        })
+            quantity: 1,
+        });
 
         const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
             line_items: line_items,
             mode: "payment",
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-            cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
-        })
-        response.json({success: true, session_url: session.url})
-    } catch (error) {
-        console.log(error)
-        response.json({success: false, message: "Error"})
-    }
-}
+            cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+        });
 
+        console.log("Stripe session created:", session); // Log session for debugging
+        response.json({ success: true, session_url: session.url });
+    } catch (error) {
+        console.error("Error placing order:", error); // Log detailed error
+        response.status(500).json({ success: false, message: "Error placing order" });
+    }
+};
 
 const verifyOrder = async (request, response) => {
-    const {orderId, success} = request.body;
+    const { orderId, success } = request.body;
     try {
-        if (success === "true"){
-            await orderModel.findByIdAndUpdate(orderId, {payment: true})
-            response.json({success: true, message: "Paid"})
-        }
-        else {
+        if (success === "true") {
+            await orderModel.findByIdAndUpdate(orderId, { payment: true });
+            response.json({ success: true, message: "Order Paid" });
+        } else {
             await orderModel.findByIdAndDelete(orderId);
-            response.json({success: false, message: "Not Paid"});
+            response.json({ success: false, message: "Order Not Paid" });
         }
     } catch (error) {
-        console.log(error)
-        response.json({success: false, message: "Error"});
+        console.error("Error verifying order:", error);
+        response.status(500).json({ success: false, message: "Error verifying order" });
     }
-}
+};
 
-// User Order for frontend
-
+// User orders for frontend
 const userOrders = async (request, response) => {
     try {
-        // console.log("User Id: ", request.user.id)
-        const orders = await orderModel.find({userId: request.body.userId})
-        response.json({success: true, data: orders})
-    } catch(error) {
-        console.log(error)
-        response.json({success: false, message: "Error"})
+        const orders = await orderModel.find({ userId: request.body.userId });
+        response.json({ success: true, data: orders });
+    } catch (error) {
+        console.error("Error fetching user orders:", error);
+        response.status(500).json({ success: false, message: "Error fetching orders" });
     }
-}
+};
 
-export {placeOrder, verifyOrder, userOrders}
+export { placeOrder, verifyOrder, userOrders };
