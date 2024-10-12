@@ -1,0 +1,23 @@
+/* src/components/HelpButton.css */
+.help-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: tomato; /* Customize the color */
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .help-button:hover {
+    background-color: red; /* Darker shade on hover */
+  }
+  
