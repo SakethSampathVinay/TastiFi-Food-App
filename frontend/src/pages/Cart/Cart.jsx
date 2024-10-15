@@ -25,7 +25,6 @@ const Cart = () => {
             return (
               <Fragment key = {item._id}>
                 <div className="cart-items-title cart-items-item"  key={index}>
-
                   <img src={url + "/images/" + item.image} alt="item image" />
                   <p>{item.name}</p>
                   <p>₹{item.price}</p>
