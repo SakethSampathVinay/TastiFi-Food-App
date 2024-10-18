@@ -7,7 +7,8 @@ import foodRouter from "./routes/foodRoute.js"; // Food-related routes
 import userRouter from "./routes/userRoute.js"; // User-related routes
 import cartRouter from "./routes/cardRoute.js"; // Cart-related routes
 import orderRouter from "./routes/orderRoute.js"; // Order-related routes
-import chatbotRouter from './routes/chatbotRoute.js';
+import chatbotRouter from './routes/chatbotRoute.js'; // Chatbot-related routes
+
 import EventEmitter from 'events';
 
 const app = express();
