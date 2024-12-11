@@ -7,7 +7,6 @@ import foodRouter from "./routes/foodRoute.js"; // Food-related routes
 import userRouter from "./routes/userRoute.js"; // User-related routes
 import cartRouter from "./routes/cardRoute.js"; // Cart-related routes
 import orderRouter from "./routes/orderRoute.js"; // Order-related routes
-import chatbotRouter from './routes/chatbotRoute.js'; // Chatbot-related routes
 
 import EventEmitter from 'events';
 
@@ -30,7 +29,6 @@ app.use("/images", express.static("uploads")); // Serve static images
 app.use("/api/user", userRouter); // User API routes
 app.use("/api/cart", cartRouter); // Cart API routes
 app.use("/api/order", orderRouter); // Order API routes
-app.use('/api/chatbot', chatbotRouter); 
 
 // Health check route
 app.get("/", (request, response) => {

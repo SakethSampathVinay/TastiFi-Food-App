@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
 
-  const url = "https://tastifiadmin.vercel.app";
+  const url = "http://localhost:5174"; // need to change this
 
   return (
     <div>

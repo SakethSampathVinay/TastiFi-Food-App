@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Placing user order for frontend
 const placeOrder = async (request, response) => {
-    const frontend_url = "https://tasti-fi.vercel.app"; // your frontend URL
+    const frontend_url = "http://localhost:5173/"; // your frontend URL https://tasti-fi.vercel.app
     try {
         // Step 1: Save new order
         const newOrder = new orderModel({
