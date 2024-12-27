@@ -6,9 +6,9 @@ import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";// http://localhost:5173
 const App = () => {
-  const url = "https://tastifiadmin.vercel.app"; // need to change this
+  const url = "https://tastifiadmin.vercel.app"; // need to change this 
 
   return (
     <div>
