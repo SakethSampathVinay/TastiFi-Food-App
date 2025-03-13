@@ -69,17 +69,23 @@ const Orders = ({ url }) => {
               </div>
             </div>
             <div className="order-item-address">
-            <p className="order-total-items">Items: {order.items.length}</p>
-            <p>Amount: ${order.amount}</p>
+              <p className="order-total-items">Items: {order.items.length}</p>
+              <p>Amount: ${order.amount}</p>
             </div>
             <select
               onChange={(event) => statusHandler(event, order._id)}
               value={order.status}
               className="order-status"
             >
-              <option className = "order-status-option" value="Food Processing">Food Processing</option>
-              <option className = "order-status-option" value="Out of Delivery">Out of Delivery</option>
-              <option  className = "order-status-option" value="Delivered">Delivered</option>
+              <option className="order-status-option" value="Food Processing">
+                Food Processing
+              </option>
+              <option className="order-status-option" value="Out of Delivery">
+                Out of Delivery
+              </option>
+              <option className="order-status-option" value="Delivered">
+                Delivered
+              </option>
             </select>
           </div>
         ))}
