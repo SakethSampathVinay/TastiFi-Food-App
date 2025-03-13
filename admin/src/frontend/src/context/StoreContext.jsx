@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "https://tastifi-food-app-1.onrender.com"; //  http://localhost:4000
+  const url = "https://tastifi-food-app-1.onrender.com";
   const [token, setToken] = useState("");
   const [food_list, setFoodlist] = useState([]);
 
