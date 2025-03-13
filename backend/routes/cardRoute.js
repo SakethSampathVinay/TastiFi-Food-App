@@ -8,8 +8,8 @@ import authMiddleaware from "../middleaware/auth.js";
 
 const cartRouter = express.Router();
 
-cartRouter.post("/add", addToCart);
-cartRouter.post("/remove", removeFromCart);
-cartRouter.post("/getCart", getCart);
+cartRouter.post("/add", authMiddleaware, addToCart);
+cartRouter.post("/remove", authMiddleaware, removeFromCart);
+cartRouter.post("/getCart", authMiddleaware, getCart);
 
 export default cartRouter;
