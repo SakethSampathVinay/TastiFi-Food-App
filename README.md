@@ -1,6 +1,6 @@
 # Tastifi - Restaurant Food Delivery Application
 
-![Tastifi Banner] (https://res.cloudinary.com/dgtfgihga/image/upload/v1727961916/Screenshot_2024-10-03_185337_kfx3hh.png)
+![Tastifi Banner](https://res.cloudinary.com/dgtfgihga/image/upload/v1727961916/Screenshot_2024-10-03_185337_kfx3hh.png)
 
 ## Project Overview
 Tastifi is a modern food delivery platform where users can browse restaurants, order food, and track their orders in real-time.
