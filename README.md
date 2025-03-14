@@ -1,17 +1,143 @@
-#TastiFi - Restaurant Food Ordering App
+🍽️ Tastifi - Restaurant Food Delivery Application
 
-TastiFi is a comprehensive food ordering application designed to provide a seamless experience for both customers and restaurant administrators. The platform enables users to browse menus, place orders, and track delivery status in real time. Built with React, Node.js, Express, and MongoDB, TastiFi offers secure payment processing via Stripe and incorporates robust authentication and authorization features.
 
-🌟 Key Features
-Admin Panel: Complete control for restaurant owners to manage menus, track orders, and update order statuses.
-Add to Cart: A simple, user-friendly cart feature that allows customers to add and manage menu items.
-Order and Payment: Seamless and secure order placement with Stripe for payment processing.
-Order Tracking: Real-time updates on order progress from preparation to delivery.
-Authentication & Authorization: Secure login and role-based access control for users and admin.
-🚀 Tech Stack
-Frontend: React.js
-Backend: Node.js, Express.js
-Database: MongoDB
-Payment: Stripe API
-🔗 Live Demo
-Experience TastiFi live: https://tasti-fi.vercel.app/
+
+🚀 Project Overview
+
+Tastifi is a modern food delivery platform where users can browse restaurants, order food, and track their orders in real-time.
+
+🔹 Features
+
+User Authentication (Sign Up/Login)
+
+Add to Cart & Checkout
+
+Payment Integration (Stripe)
+
+Order Tracking & History
+
+Admin Panel for managing restaurants, menus, and orders
+
+Secure & Scalable Backend
+
+🛠️ Tech Stack
+
+Section
+
+Technology
+
+Frontend
+
+React, Vite, Flexbox
+
+Backend
+
+Node.js, Express.js, REST API, MongoDB
+
+Admin Panel
+
+React, Vite, Flexbox
+
+Deployment
+
+Vercel
+
+Payment
+
+Stripe
+
+⚙️ Installation & Setup
+
+Clone the Repository
+
+git clone <repo-link>
+cd tastifi
+
+Frontend Setup
+
+cd frontend
+npm install
+npm run dev
+
+Backend Setup
+
+cd backend
+npm install
+npm run start
+
+Admin Panel Setup
+
+cd admin
+npm install
+npm run dev
+
+🌍 Deployment Links
+
+🚀 Live URLs:
+
+Frontend: Frontend App
+
+Backend API: API Documentation
+
+Admin Panel: Admin Dashboard
+
+🔑 Environment Variables
+
+Create a .env file in backend/ and frontend/:
+
+# Backend .env
+PORT=5000
+DATABASE_URL=your-database-url
+JWT_SECRET=your-jwt-secret
+STRIPE_KEY=your-stripe-key
+
+# Frontend .env
+VITE_API_URL=https://your-api-url.com
+STRIPE_KEY=your-stripe-key
+
+📡 API Documentation
+
+Endpoint
+
+Method
+
+Description
+
+/api/auth/register
+
+POST
+
+User Registration
+
+/api/auth/login
+
+POST
+
+User Login
+
+/api/orders
+
+GET
+
+Fetch Orders
+
+/api/payment
+
+POST
+
+Process Payment
+
+For full API documentation, refer to API Docs.
+
+👨‍💻 Contributor
+
+Saketh Sampath Vinay (Main Developer)
+
+📞 Contact
+
+📧 For Support: saketh@example.com
+
+💡 Raise an Issue: GitHub Issues
+
+🚀 Happy Coding! 🎉
+
