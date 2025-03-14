@@ -98,13 +98,13 @@
   z-index: 1;
 }
 
-.navbar-profile:hover .nav-profile-dropdown{
+.navbar-profile:hover .nav-profile-dropdown {
   display: flex;
   flex-direction: column;
   gap: 10px;
   background-color: #fff2ef;
   padding: 12px 25px;
-  border-radius: 4px ;
+  border-radius: 4px;
   border: 1px solid tomato;
   outline: 2px solid white;
   list-style: none;
@@ -123,6 +123,17 @@
 
 .nav-profile-dropdown li:hover {
   color: tomato;
+}
+
+.admin-panel-styling {
+  border-radius: 15px;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
 }
 
 @media (max-width: 1050px) {

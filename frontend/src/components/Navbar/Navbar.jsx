@@ -15,8 +15,11 @@ const Navbar = ({ setShowLogin }) => {
   };
   return (
     <div className="navbar">
-      <Link to="/">  
-        <img src = "https://res.cloudinary.com/dgtfgihga/image/upload/v1727961916/Screenshot_2024-10-03_185337_kfx3hh.png" className="logo" />
+      <Link to="/">
+        <img
+          src="https://res.cloudinary.com/dgtfgihga/image/upload/v1727961916/Screenshot_2024-10-03_185337_kfx3hh.png"
+          className="logo"
+        />
       </Link>
       <ul className="navbar-menu">
         <Link
@@ -46,6 +49,14 @@ const Navbar = ({ setShowLogin }) => {
           className={menu === "contact-us" ? "active" : ""}
         >
           Contact us
+        </a>
+        <a
+          href="https://tastifi-adminpanels-4ubrfpsek-sakethsampathvinays-projects.vercel.app/list"
+          target="_blank"
+          onClick={() => setMenu("contact-us")}
+          className="admin-panel-styling"
+        >
+          Admin Panel
         </a>
       </ul>
       <div className="navbar-right">
