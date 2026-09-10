@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config(); // Load environment variables from .env file
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js"; // Database connection utility

@@ -1,14 +1,15 @@
 import mongoose from "mongoose";
 
 export const connectDB = async () => {
+    const MONGO_URI = process.env.MONGO_URI;
+    if (!MONGO_URI) {
+        console.error("❌ MONGO_URI is not set in .env file!");
+        return;
+    }
     try {
-        await mongoose.connect("mongodb+srv://sakethsampath2006:7093023759@cluster0.2j1tb.mongodb.net/food-del", {
-            // Removed sslValidate
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log("DB Connected");
+        await mongoose.connect(MONGO_URI);
+        console.log("✅ DB Connected successfully");
     } catch (error) {
-        console.error("DB Connection Error:", error);
+        console.error("DB Connection Error:", error.message);
     }
 };
