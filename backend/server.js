@@ -9,11 +9,15 @@ import orderRouter from "./routes/orderRoute.js"; // Order-related routes
 import EventEmitter from 'events';
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json()); // Parse incoming JSON requests
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({
+  origin: ["https://tasti-fi.vercel.app", "http://localhost:5173"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+})); // Enable CORS for allowed origins
 
 // Database connection
 connectDB(); // Connect to the database
